@@ -1,7 +1,7 @@
 export default {
   route: {
     dashboard: '首页',
-    documentation: '文档',
+    documentation: '参考经济',
     guide: '引导页',
     permission: '权限测试页',
     rolePermission: '角色权限',
@@ -36,11 +36,12 @@ export default {
     'menu1-2-2': '菜单 1-2-2',
     'menu1-3': '菜单 1-3',
     menu2: '菜单 2',
-    Table: 'Table',
+    Table: '股票管理',
     dynamicTable: '动态 Table',
     dragTable: '拖拽 Table',
     inlineEditTable: 'Table 内编辑',
-    complexTable: '综合 Table',
+    complexTable: '自选股',
+    JyclTable: '交易策略',
     tab: 'Tab',
     form: '表单',
     createArticle: '创建文章',
@@ -82,7 +83,7 @@ export default {
     thirdpartyTips: '本地不能模拟，请结合自己业务进行模拟！！！'
   },
   documentation: {
-    documentation: '文档',
+    documentation: '外链',
     github: 'Github 地址'
   },
   permission: {
@@ -96,7 +97,8 @@ export default {
     cancel: '取消'
   },
   guide: {
-    description: '引导页对于一些第一次进入项目的人很有用，你可以简单介绍下项目的功能。本 Demo 是基于',
+    description: '1.进入 自选股 模块，添加/编辑股票 → 大盘指数（更新大盘指数） → 量化公式（生成quantify表） → 价格估算（次日价格范围)\n' +
+      '2.交易策略（查看股票的对应价位范围情况）',
     button: '打开引导'
   },
   components: {
@@ -133,8 +135,8 @@ export default {
     delete: '删除',
     cancel: '取 消',
     confirm: '确 定',
-	sName: '股票名称',
-	sCode: '代码',
+	  sName: '股票名称',
+    sCode: '代码',
     sIndustry: '行业板块',
     sFeature: '特性',
 	sAbility: '盈利能力',
@@ -144,7 +146,21 @@ export default {
 	sBelong: '市场',
 	formula: '量化公式',
 	estimate: '价格估算',
-	dpzs: '大盘指数'
+	dpzs: '大盘指数',
+    spj: '当日收盘价',
+    minPrice: '当日最低值',
+    sStatusA: '个股状态',
+    sMarket: '大盘状态',
+    sDownBef: '下跌点数-（%）',
+    sDownAft: '下跌点数+（%）',
+    sDownszBef: '买入-(元)',
+    sDownszAft: '买入+(元)',
+    sUpBef: '上行点数-（%）',
+    sUpAft: '上行点数+（%）',
+    sUpszBef: '卖出-(元)',
+    sUpszAft: '卖出+(元)',
+    sDownRange: '下跌范围',
+    sUpRange: '上行范围',
   },
   example: {
     warning: '创建和编辑页面是不能被 keep-alive 缓存的，因为keep-alive 的 include 目前不支持根据路由来缓存，所以目前都是基于 component name 来进行缓存的。如果你想类似的实现缓存效果，可以使用 localStorage 等浏览器缓存方案。或者不要使用 keep-alive 的 include，直接缓存所有页面。详情见'

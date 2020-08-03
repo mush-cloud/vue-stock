@@ -8,12 +8,53 @@ export function fetchList(query) {
   })
 }
 
+export function createStock(data) {
+  return request({
+    url: '/vue-element-admin/stockbasis/stockAdd',
+    method: 'post',
+    data
+  })
+}
+
+export function updateStock(data) {
+  return request({
+    url: '/vue-element-admin/stockbasis/stockUpdate',
+    method: 'post',
+    data
+  })
+}
+
+export function formula(stockName) {
+  return request({
+    url: '/vue-element-admin/stockbasis/formula',
+    method: 'post',
+    params: { stockName }
+  })
+}
+
+export function estimate(stockName, spj, minPrice) {
+  return request({
+    url: '/vue-element-admin/stockbasis/estimate',
+    method: 'post',
+    params: { stockName, spj, minPrice }
+  })
+}
+
 export function updateStockDp() {
   return request({
     url: '/vue-element-admin/stockbasis/stockDp',
     method: 'post',
   })
 }
+
+export function listQuantify(data) {
+  return request({
+    url: '/vue-element-admin/stockquantify/quantifyList',
+    method: 'post',
+    data
+  })
+}
+
 
 export function fetchArticle(id) {
   return request({

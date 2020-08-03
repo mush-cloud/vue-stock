@@ -2,36 +2,9 @@
   <div class="app-container">
     <div class="filter-container">
       <el-input v-model="listQuery.sName" :placeholder="$t('table.sName')" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
-      <el-select v-model="listQuery.sIndustry" :placeholder="$t('table.sIndustry')" clearable style="width: 90px" class="filter-item">
-        <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item" />
-      </el-select>
-      <el-select v-model="listQuery.sFeature" :placeholder="$t('table.sFeature')" clearable class="filter-item" style="width: 130px">
-        <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
-      </el-select>
-      <el-select v-model="listQuery.sAbility" :placeholder="$t('table.sAbility')" clearable class="filter-item" style="width: 130px">
-        <el-option v-for="item in sAbilityTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
-      </el-select>
-      <el-select v-model="listQuery.sStatus" :placeholder="$t('table.sStatus')" clearable class="filter-item" style="width: 130px">
-        <el-option v-for="item in sStatusTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
-      </el-select>
-<!--      <el-select v-model="listQuery.sort" style="width: 140px" class="filter-item" @change="handleFilter">
-        <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" />
-      </el-select> -->
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
-        {{ $t('table.search') }}
-      </el-button>
-      <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit" @click="handleCreate">
-        {{ $t('table.add') }}
-      </el-button>
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-edit" @click="updateStockDp">
-        {{ $t('table.dpzs') }}
-      </el-button>
       <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
         {{ $t('table.export') }}
       </el-button>
-<!--      <el-checkbox v-model="showReviewer" class="filter-item" style="margin-left:15px;" @change="tableKey=tableKey+1">
-        {{ $t('table.reviewer') }}
-      </el-checkbox> -->
     </div>
 
     <el-table
@@ -57,159 +30,78 @@
       <el-table-column :label="$t('table.sName')" min-width="80px">
         <template slot-scope="{row}">
           <span class="link-type" @click="handleUpdate(row)">{{ row.sName }}</span>
-          <!-- <el-tag>{{ row.type | typeFilter }}</el-tag> -->
-          &nbsp;&nbsp;&nbsp;
-          <el-tag>{{ row.sFeature}}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.sCode')" width="110px" align="center">
+      <el-table-column :label="$t('table.sMarket')" width="110px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.sCode }}</span>
+          <span>{{ row.sMarket }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.sIndustry')" width="110px" align="center">
+      <el-table-column :label="$t('table.sStatusA')" width="110px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.sIndustry }}</span>
+          <span>{{ row.sStatus }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.sSupport')" width="110px" align="center">
+      <el-table-column :label="$t('table.sDownBef')" width="110px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.sSupport }}</span>
+          <span>{{ row.sDownBef }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.sResistance')" width="110px" align="center">
+      <el-table-column :label="$t('table.sDownAft')" width="110px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.sResistance }}</span>
+          <span>{{ row.sDownAft }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.sBelong')" width="110px" align="center">
+      <el-table-column :label="$t('table.sDownRange')" width="110px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.sBelong }}</span>
+          <span>{{ row.sDownRange }}</span>
         </template>
       </el-table-column>
-<!--      <el-table-column v-if="showReviewer" :label="$t('table.reviewer')" width="110px" align="center">
+      <el-table-column :label="$t('table.sDownszBef')" width="110px" align="center">
         <template slot-scope="{row}">
-          <span style="color:red;">{{ row.reviewer }}</span>
-        </template>
-      </el-table-column> -->
-      <el-table-column :label="$t('table.sAbility')" width="80px">
-        <template slot-scope="{row}">
-          <svg-icon v-for="n in +row.sAbility" :key="n" icon-class="star" class="meta-item__icon" />
+          <span class="link-type">{{ row.sDownszBef }}</span>
         </template>
       </el-table-column>
-<!--      <el-table-column :label="$t('table.readings')" align="center" width="95">
+        <el-table-column :label="$t('table.sDownszAft')" width="110px" align="center">
+          <template slot-scope="{row}">
+            <span class="link-type">{{ row.sDownszAft }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column :label="$t('table.sUpBef')" width="110px" align="center">
+          <template slot-scope="{row}">
+            <span>{{ row.sUpBef }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column :label="$t('table.sUpAft')" width="110px" align="center">
+          <template slot-scope="{row}">
+            <span>{{ row.sUpAft }}</span>
+          </template>
+      </el-table-column>
+      <el-table-column :label="$t('table.sUpRange')" width="110px" align="center">
         <template slot-scope="{row}">
-          <span v-if="row.pageviews" class="link-type" @click="handleFetchPv(row.pageviews)">{{ row.pageviews }}</span>
-          <span v-else>0</span>
-        </template>
-      </el-table-column> -->
-      <el-table-column :label="$t('table.sStatus')" class-name="status-col" width="100">
-        <template slot-scope="{row}">
-          <el-tag :type="row.sStatus | statusFilter">
-            {{ row.sStatus }}
-          </el-tag>
+          <span>{{ row.sDownRange }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.actions')" align="center" width="250" class-name="small-padding fixed-width">
-        <template slot-scope="{row,$index}">
-          <el-button type="primary" size="mini" @click="handleUpdate(row)">
-            {{ $t('table.edit') }}
-          </el-button>
-          <el-button type="danger" size="mini" @click="handleFormula(row)">
-            {{ $t('table.formula') }}
-          </el-button>
-          <el-button type="success" size="mini" @click="handleEstimate(row)">
-            {{ $t('table.estimate') }}
-          </el-button>
-       <!--   <el-button v-if="row.status!='published'" size="mini" type="success" @click="handleModifyStatus(row,'published')">
-            {{ $t('table.publish') }}
-          </el-button> -->
-       <!--   <el-button v-if="row.status!='draft'" size="mini" @click="handleModifyStatus(row,'draft')">
-            {{ $t('table.draft') }}
-          </el-button> -->
-       <!--   <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row,$index)">
-            {{ $t('table.delete') }}
-          </el-button> -->
-        </template>
-      </el-table-column>
+        <el-table-column :label="$t('table.sUpszBef')" width="110px" align="center">
+          <template slot-scope="{row}">
+            <span class="link-type">{{ row.sUpszBef }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column :label="$t('table.sUpszAft')" width="110px" align="center">
+          <template slot-scope="{row}">
+            <span class="link-type">{{ row.sUpszAft }}</span>
+          </template>
+        </el-table-column>
+
+
     </el-table>
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
-
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="120px" style="width: 400px; margin-left:50px;">
-
-        <el-form-item :label="$t('table.sName')" prop="sName">
-          <el-input v-model="temp.sName" />
-        </el-form-item>
-        <el-form-item :label="$t('table.sCode')" prop="sCode">
-          <el-input v-model="temp.sCode" />
-        </el-form-item>
-        <el-form-item :label="$t('table.sIndustry')" prop="sIndustry">
-          <el-select v-model="temp.sIndustry" class="filter-item" placeholder="Please select">
-            <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item" />
-          </el-select>
-        </el-form-item>
-        <el-form-item :label="$t('table.sFeature')" prop="sFeature">
-          <el-select v-model="temp.sFeature" class="filter-item" placeholder="Please select">
-            <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
-          </el-select>
-        </el-form-item>
-        <el-form-item :label="$t('table.sResistance')" prop="sResistance">
-          <el-input v-model="temp.sResistance" />
-        </el-form-item>
-        <el-form-item :label="$t('table.sSupport')" prop="sSupport">
-          <el-input v-model="temp.sSupport" />
-        </el-form-item>
-        <el-form-item :label="$t('table.sBelong')" prop="sBelong">
-          <el-select v-model="temp.sBelong" class="filter-item" placeholder="Please select">
-            <el-option v-for="item in sBelongTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
-          </el-select>
-        </el-form-item>
-        <el-form-item :label="$t('table.sStatus')" prop="sStatus">
-          <el-select v-model="temp.sStatus" class="filter-item" placeholder="Please select">
-            <el-option v-for="item in sStatusTypeOptions" :key="item.key" :label="item.key" :value="item.key" />
-          </el-select>
-        </el-form-item>
-        <el-form-item :label="$t('table.sAbility')">
-          <el-rate v-model="temp.sAbility" :colors="['#99A9BF', '#F7BA2A', '#FF9900']" :max="3" style="margin-top:8px;" />
-        </el-form-item>
-<!--        <el-form-item :label="$t('table.remark')">-->
-<!--          <el-input v-model="temp.remark" :autosize="{ minRows: 2, maxRows: 4}" type="textarea" placeholder="Please input" />-->
-<!--        </el-form-item>-->
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">
-          {{ $t('table.cancel') }}
-        </el-button>
-        <el-button type="primary" @click="dialogStatus==='create'?createData():updateData()">
-          {{ $t('table.confirm') }}
-        </el-button>
-      </div>
-    </el-dialog>
-
-    <el-dialog :visible.sync="dialogPvVisible" title="次日价格估算">
-<!--      <el-table :data="pvData" border fit highlight-current-row style="width: 100%">-->
-<!--        <el-table-column prop="key" label="Channel" />-->
-<!--        <el-table-column prop="pv" label="Pv" />-->
-<!--      </el-table>-->
-      <el-form ref="dataForm" :rules="rules" :model="tempEstimate" label-position="left" label-width="120px" style="width: 400px; margin-left:50px;">
-      <el-form-item :label="$t('table.spj')" prop="spj">
-        <el-input v-model="tempEstimate.spj" />
-      </el-form-item>
-      <el-form-item :label="$t('table.minPrice')" prop="minPrice">
-        <el-input v-model="tempEstimate.minPrice" />
-      </el-form-item>
-      </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="executeEstimate()">{{ $t('table.confirm') }}</el-button>
-      </span>
-    </el-dialog>
   </div>
 </template>
 
 <script>
-import { fetchList, createStock, updateStock, updateStockDp, formula, estimate } from '@/api/article'
+import { fetchList, createStock, updateStock, updateStockDp, formula, estimate, listQuantify } from '@/api/article'
 import waves from '@/directive/waves' // waves directive
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
@@ -243,7 +135,7 @@ const calendarTypeKeyValue = calendarTypeOptions.reduce((acc, cur) => {
 }, {})
 
 export default {
-  name: 'ComplexTable',
+  name: 'JyclTable',
   components: { Pagination },
   directives: { waves },
   filters: {
@@ -330,8 +222,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchList(this.listQuery).then(response => {
-        console.info('返回数据',response.data.pageResult);
+      listQuantify(this.listQuery).then(response => {
         this.list = response.data.pageResult.list
         this.total = response.data.pageResult.total
 
@@ -340,15 +231,6 @@ export default {
           this.listLoading = false
         }, 0.1 * 1000)
       })
-    },
-    updateStockDp() {
-      updateStockDp().then(response => {
-        Message({
-          message: response.msg,
-          type: 'success',
-          duration: 0.5 * 1000
-        })
-    })
     },
     handleFilter() {
       this.listQuery.page = 1
