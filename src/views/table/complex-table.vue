@@ -56,7 +56,7 @@
       </el-table-column> -->
       <el-table-column :label="$t('table.sName')" min-width="80px">
         <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.sName }}</span>
+          <span class="link-type" @click="handlePicture(row)">{{ row.sName }}</span>
           <!-- <el-tag>{{ row.type | typeFilter }}</el-tag> -->
           &nbsp;&nbsp;&nbsp;
           <el-tag>{{ row.sFeature}}</el-tag>
@@ -85,6 +85,11 @@
       <el-table-column :label="$t('table.sBelong')" width="110px" align="center">
         <template slot-scope="{row}">
           <span>{{ row.sBelong }}</span>
+        </template>
+        <template slot-scope="{row}">
+          <el-tag :type="row.sBelong | sBelongFilter">
+            {{sBelongType[row.sBelong]}}
+          </el-tag>
         </template>
       </el-table-column>
 <!--      <el-table-column v-if="showReviewer" :label="$t('table.reviewer')" width="110px" align="center">
@@ -225,6 +230,11 @@ const sBelongTypeOptions = [
   { key: '1', display_name: '沪' },
   { key: '2', display_name: '深' }
 ]
+
+const sBelongType = {
+  1: "沪",
+  2: "深"
+}
 const sAbilityTypeOptions = [
   { key: '1', display_name: '❤' },
   { key: '2', display_name: '❤❤' },
@@ -236,6 +246,7 @@ const sStatusTypeOptions = [
   { key: '预警'},
   { key: '黑名单'},
 ]
+
 // arr to obj, such as { CN : "China", US : "USA" }
 const calendarTypeKeyValue = calendarTypeOptions.reduce((acc, cur) => {
   acc[cur.key] = cur.display_name
@@ -257,6 +268,13 @@ export default {
         '黑名单': 'danger',
       }
       return statusMap[status]
+    },
+    sBelongFilter(sBelong) {
+      const statusMap = {
+        1: '沪',
+        2: '深',
+      }
+      return statusMap[sBelong]
     },
     typeFilter(type) {
       return calendarTypeKeyValue[type]
@@ -286,6 +304,7 @@ export default {
       sBelongTypeOptions,
       sAbilityTypeOptions,
       sStatusTypeOptions,
+      sBelongType,
       sortOptions: [{ label: 'ID Ascending', key: '+id' }, { label: 'ID Descending', key: '-id' }],
       statusOptions: ['published', 'draft', 'deleted'],
       showReviewer: false,
@@ -353,6 +372,12 @@ export default {
     handleFilter() {
       this.listQuery.page = 1
       this.getList()
+    },
+    handlePicture(row) {
+
+      const url = "http://image.sinajs.cn/newchart/daily/n/" + (row.sBelong = 1 ? 'sh':'sz') + row.sCode + ".gif"
+      console.log(url)
+      window.open(url,row.sName)
     },
     handleModifyStatus(row, status) {
       this.$message({
@@ -491,8 +516,8 @@ export default {
     handleDownload() {
       this.downloadLoading = true
       import('@/vendor/Export2Excel').then(excel => {
-        const tHeader = ['timestamp', 'title', 'type', 'importance', 'status']
-        const filterVal = ['timestamp', 'title', 'type', 'importance', 'status']
+        const tHeader = ['股票名称', '代码', '行业板块', '下行支撑位', '上行阻力位', '市场']
+        const filterVal = ['sName', 'sCode', 'sIndustry', 'sFeature', 'sSupport', 'sBelong']
         const data = this.formatJson(filterVal)
         excel.export_json_to_excel({
           header: tHeader,

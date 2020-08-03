@@ -2,7 +2,7 @@
   <div class="app-container">
     <div class="filter-container">
       <el-input v-model="listQuery.sName" :placeholder="$t('table.sName')" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
-      <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
+      <el-button style="margin-left: 5px" v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
         {{ $t('table.export') }}
       </el-button>
     </div>
@@ -59,12 +59,12 @@
       </el-table-column>
       <el-table-column :label="$t('table.sDownszBef')" width="110px" align="center">
         <template slot-scope="{row}">
-          <span class="link-type">{{ row.sDownszBef }}</span>
+          <span class="down-type">{{ row.sDownszBef }}</span>
         </template>
       </el-table-column>
         <el-table-column :label="$t('table.sDownszAft')" width="110px" align="center">
           <template slot-scope="{row}">
-            <span class="link-type">{{ row.sDownszAft }}</span>
+            <span class="down-type">{{ row.sDownszAft }}</span>
           </template>
         </el-table-column>
         <el-table-column :label="$t('table.sUpBef')" width="110px" align="center">
@@ -84,12 +84,12 @@
       </el-table-column>
         <el-table-column :label="$t('table.sUpszBef')" width="110px" align="center">
           <template slot-scope="{row}">
-            <span class="link-type">{{ row.sUpszBef }}</span>
+            <span class="up-type">{{ row.sUpszBef }}</span>
           </template>
         </el-table-column>
         <el-table-column :label="$t('table.sUpszAft')" width="110px" align="center">
           <template slot-scope="{row}">
-            <span class="link-type">{{ row.sUpszAft }}</span>
+            <span class="up-type">{{ row.sUpszAft }}</span>
           </template>
         </el-table-column>
 
@@ -373,8 +373,10 @@ export default {
     handleDownload() {
       this.downloadLoading = true
       import('@/vendor/Export2Excel').then(excel => {
-        const tHeader = ['timestamp', 'title', 'type', 'importance', 'status']
-        const filterVal = ['timestamp', 'title', 'type', 'importance', 'status']
+        const tHeader = ['股票名称', '大盘状态', '个股状态', '下跌点数-（%）', '下跌点数+（%）','下跌范围','买入-(元)','买入+(元)',
+          '上行点数-（%）', '上行点数+（%）', '上行范围','卖出-(元)','卖出+(元)']
+        const filterVal = ['sName', 'sMarket', 'sStatus', 'sDownBef', 'sDownAft', 'sDownRange', 'sDownszBef',
+          'sDownszAft', 'sUpBef', 'sUpAft', 'sUpRange','sUpszBef', 'sUpszAft']
         const data = this.formatJson(filterVal)
         excel.export_json_to_excel({
           header: tHeader,
