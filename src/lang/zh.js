@@ -42,6 +42,7 @@ export default {
     inlineEditTable: 'Table 内编辑',
     complexTable: '自选股',
     JyclTable: '交易策略',
+    TommorowTable: '次日荐股',
     tab: 'Tab',
     form: '表单',
     createArticle: '创建文章',

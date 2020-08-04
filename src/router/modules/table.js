@@ -30,6 +30,12 @@ const tableRouter = {
     //   name: 'InlineEditTable',
     //   meta: { title: 'inlineEditTable' }
     // },
+    // {
+    //   path: 'inline-edit-table',
+    //   component: () => import('@/views/table/inline-edit-table'),
+    //   name: 'InlineEditTable',
+    //   meta: { title: 'inlineEditTable' }
+    // },
     {
       path: 'complex-table',
       component: () => import('@/views/table/complex-table'),
@@ -42,6 +48,12 @@ const tableRouter = {
       component: () => import('@/views/table/jycl-table'),
       name: 'JyclTable',
       meta: { title: 'JyclTable', icon: 'bug' }
+    },
+    {
+      path: 'tomorrow-table',
+      component: () => import('@/views/table/tomorrowl-table'),
+      name: 'TommorowTable',
+      meta: { title: 'TommorowTable', icon: 'el-icon-cloudy-and-sunny' }
     }
   ]
 }
