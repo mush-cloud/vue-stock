@@ -98,8 +98,9 @@ export default {
     cancel: '取消'
   },
   guide: {
-    description: '1.进入 自选股 模块，添加/编辑股票 → 大盘指数（更新大盘指数） → 量化公式（生成quantify表） → 价格估算（次日价格范围)\n' +
-      '2.交易策略（查看股票的对应价位范围情况）',
+    description: '1.进入 自选股 模块，添加/编辑股票 → 大盘指数（更新大盘指数） → 量化公式（生成quantify表） → 价格估算（次日价格范围)' +
+      '2.交易策略（查看股票的对应价位范围情况）3.次日荐股（推荐操作的股票）',
+    description2: '4.状态说明 微跌（0-1） 大跌B（1-2） 大跌A（2-3） 超大跌（3→） 微涨（0-1） 中涨（1-2） 大涨（2→）',
     button: '打开引导'
   },
   components: {
@@ -131,6 +132,7 @@ export default {
     status: '状态',
     actions: '操作',
     edit: '编辑',
+    diagnosis: '诊断',
     publish: '发布',
     draft: '草稿',
     delete: '删除',

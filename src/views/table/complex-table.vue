@@ -2,16 +2,16 @@
   <div class="app-container">
     <div class="filter-container">
       <el-input v-model="listQuery.sName" :placeholder="$t('table.sName')" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
-      <el-select v-model="listQuery.sIndustry" :placeholder="$t('table.sIndustry')" clearable style="width: 90px" class="filter-item">
+      <el-select v-model="listQuery.sIndustry" :placeholder="$t('table.sIndustry')" clearable style="width: 120px" class="filter-item">
         <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item" />
       </el-select>
-      <el-select v-model="listQuery.sFeature" :placeholder="$t('table.sFeature')" clearable class="filter-item" style="width: 130px">
+      <el-select v-model="listQuery.sFeature" :placeholder="$t('table.sFeature')" clearable class="filter-item" style="width: 120px">
         <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
       </el-select>
-      <el-select v-model="listQuery.sAbility" :placeholder="$t('table.sAbility')" clearable class="filter-item" style="width: 130px">
+      <el-select v-model="listQuery.sAbility" :placeholder="$t('table.sAbility')" clearable class="filter-item" style="width: 120px">
         <el-option v-for="item in sAbilityTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
       </el-select>
-      <el-select v-model="listQuery.sStatus" :placeholder="$t('table.sStatus')" clearable class="filter-item" style="width: 130px">
+      <el-select v-model="listQuery.sStatus" :placeholder="$t('table.sStatus')" clearable class="filter-item" style="width: 120px">
         <el-option v-for="item in sStatusTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
       </el-select>
 <!--      <el-select v-model="listQuery.sort" style="width: 140px" class="filter-item" @change="handleFilter">
@@ -54,35 +54,40 @@
           <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
         </template>
       </el-table-column> -->
-      <el-table-column :label="$t('table.sName')" min-width="80px">
+      <el-table-column :label="$t('table.sName')" max-width="150px">
         <template slot-scope="{row}">
           <span class="link-type" @click="handlePicture(row)">{{ row.sName }}</span>
           <!-- <el-tag>{{ row.type | typeFilter }}</el-tag> -->
           &nbsp;&nbsp;&nbsp;
-          <el-tag>{{ row.sFeature}}</el-tag>
+          <el-tag >{{ row.sFeature}}</el-tag>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <el-button type="primary" size="mini" @click="sinaApi(row)">
+            {{ $t('table.diagnosis') }}
+          </el-button>
+<!--          <el-tag >{{ $t('table.diagnosis') }}</el-tag>-->
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.sCode')" width="110px" align="center">
+      <el-table-column :label="$t('table.sCode')" width="100px" align="center">
         <template slot-scope="{row}">
           <span>{{ row.sCode }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.sIndustry')" width="110px" align="center">
+      <el-table-column :label="$t('table.sIndustry')" width="100px" align="center">
         <template slot-scope="{row}">
           <span>{{ row.sIndustry }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.sSupport')" width="110px" align="center">
+      <el-table-column :label="$t('table.sSupport')" width="100px" align="center">
         <template slot-scope="{row}">
           <span>{{ row.sSupport }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.sResistance')" width="110px" align="center">
+      <el-table-column :label="$t('table.sResistance')" width="100px" align="center">
         <template slot-scope="{row}">
           <span>{{ row.sResistance }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.sBelong')" width="110px" align="center">
+      <el-table-column :label="$t('table.sBelong')" width="100px" align="center">
         <template slot-scope="{row}">
           <span>{{ row.sBelong }}</span>
         </template>
@@ -115,7 +120,7 @@
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.actions')" align="center" width="250" class-name="small-padding fixed-width">
+      <el-table-column :label="$t('table.actions')" align="center" width="300" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
             {{ $t('table.edit') }}
@@ -365,7 +370,7 @@ export default {
         Message({
           message: response.msg,
           type: 'success',
-          duration: 0.5 * 1000
+          duration: 1.5 * 1000
         })
     })
     },
@@ -374,10 +379,9 @@ export default {
       this.getList()
     },
     handlePicture(row) {
-
       const url = "http://image.sinajs.cn/newchart/daily/n/" + (row.sBelong = 1 ? 'sh':'sz') + row.sCode + ".gif"
       console.log(url)
-      window.open(url,row.sName)
+      window.open(url, row.sName)
     },
     handleModifyStatus(row, status) {
       this.$message({
@@ -454,6 +458,10 @@ export default {
       this.$nextTick(() => {
         this.$refs['dataForm'].clearValidate()
       })
+    },
+    sinaApi(row) {
+      const url = 'http://finance.sina.cn/finance_zt/financeapp/hqzg.shtml?stockcode='+(row.sBelong == 1?'sh':'sz')+row.sCode
+      window.open(url, '智能诊股')
     },
     updateData() {
       this.$refs['dataForm'].validate((valid) => {

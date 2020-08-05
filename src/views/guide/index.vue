@@ -2,7 +2,9 @@
   <div class="app-container">
     <aside>
       {{ $t('guide.description') }}
-      <a href="https://github.com/kamranahmedse/driver.js" target="_blank">driver.js.</a>
+      <br/>
+      {{ $t('guide.description2') }}
+      <a href="https://github.com/mush-cloud" target="_blank">~東京文艺青年.</a>
     </aside>
 <!--    <el-button icon="el-icon-question" type="primary" @click.prevent.stop="guide">-->
 <!--      {{ $t('guide.button') }}-->

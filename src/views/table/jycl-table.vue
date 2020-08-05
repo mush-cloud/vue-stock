@@ -27,9 +27,9 @@
           <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
         </template>
       </el-table-column> -->
-      <el-table-column :label="$t('table.sName')" min-width="80px">
+      <el-table-column :label="$t('table.sName')" width="120px">
         <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.sName }}</span>
+          <span class="link-type">{{ row.sName }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('table.sMarket')" width="110px" align="center">
@@ -52,7 +52,7 @@
           <span>{{ row.sDownAft }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.sDownRange')" width="110px" align="center">
+      <el-table-column :label="$t('table.sDownRange')" min-width="150px" align="center">
         <template slot-scope="{row}">
           <span>{{ row.sDownRange }}</span>
         </template>
@@ -77,7 +77,7 @@
             <span>{{ row.sUpAft }}</span>
           </template>
       </el-table-column>
-      <el-table-column :label="$t('table.sUpRange')" width="110px" align="center">
+      <el-table-column :label="$t('table.sUpRange')" min-width="150px" align="center">
         <template slot-scope="{row}">
           <span>{{ row.sDownRange }}</span>
         </template>
@@ -235,6 +235,11 @@ export default {
     handleFilter() {
       this.listQuery.page = 1
       this.getList()
+    },
+    handlePicture(row) {
+      const url = "http://image.sinajs.cn/newchart/daily/n/" + (row.sBelong = 1 ? 'sh':'sz') + row.sCode + ".gif"
+      console.log(url)
+      window.open(url, row.sName)
     },
     handleModifyStatus(row, status) {
       this.$message({
