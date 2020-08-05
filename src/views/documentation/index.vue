@@ -43,7 +43,7 @@ export default {
     flex-shrink: 0;
     display: block;
     cursor: pointer;
-    background: black;
+    background: rgb(48, 65, 86);
     color: white;
     height: 60px;
     width: 200px;

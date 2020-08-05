@@ -2,6 +2,10 @@
   <div class="app-container">
     <div class="filter-container">
       <el-input v-model="listQuery.sName" :placeholder="$t('table.sName')" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+      <el-input v-model="listQuery.sMarket" :placeholder="$t('table.sMarket')" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
+        {{ $t('table.search') }}
+      </el-button>
       <el-button style="margin-left: 5px" v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
         {{ $t('table.export') }}
       </el-button>

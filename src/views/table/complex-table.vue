@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.sName" :placeholder="$t('table.sName')" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+      <el-input v-model="listQuery.sName" :placeholder="$t('table.sName')" style="width: 150px;" class="filter-item" @keyup.enter.native="handleFilter" />
       <el-select v-model="listQuery.sIndustry" :placeholder="$t('table.sIndustry')" clearable style="width: 120px" class="filter-item">
         <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item" />
       </el-select>
@@ -13,6 +13,9 @@
       </el-select>
       <el-select v-model="listQuery.sStatus" :placeholder="$t('table.sStatus')" clearable class="filter-item" style="width: 120px">
         <el-option v-for="item in sStatusTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
+      </el-select>
+      <el-select v-model="listQuery.sBelong" :placeholder="$t('table.sBelong')" clearable class="filter-item" style="width: 120px">
+        <el-option v-for="item in sBelongTypeOptions " :key="item.key" :label="item.display_name" :value="item.key" />
       </el-select>
 <!--      <el-select v-model="listQuery.sort" style="width: 140px" class="filter-item" @change="handleFilter">
         <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" />
@@ -94,9 +97,9 @@
         </template>
       </el-table-column>
       <el-table-column :label="$t('table.sBelong')" width="100px" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.sBelong }}</span>
-        </template>
+<!--        <template slot-scope="{row}">-->
+<!--          <span>{{ row.sBelong }}</span>-->
+<!--        </template>-->
         <template slot-scope="{row}">
           <el-tag :type="row.sBelong | sBelongFilter">
             {{sBelongType[row.sBelong]}}
@@ -394,7 +397,7 @@ export default {
       this.getList()
     },
     handlePicture(row) {
-      const url = "http://image.sinajs.cn/newchart/daily/n/" + (row.sBelong = 1 ? 'sh':'sz') + row.sCode + ".gif"
+      const url = "http://image.sinajs.cn/newchart/daily/n/" + (row.sBelong == 1 ? 'sh':'sz') + row.sCode + ".gif"
       console.log(url)
       window.open(url, row.sName)
     },
