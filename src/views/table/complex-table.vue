@@ -20,14 +20,20 @@
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
         {{ $t('table.search') }}
       </el-button>
-      <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit" @click="handleCreate">
+      <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-first-aid-kit" @click="handleCreate">
         {{ $t('table.add') }}
       </el-button>
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-edit" @click="updateStockDp">
-        {{ $t('table.dpzs') }}
+      <el-button v-waves class="filter-item" type="primary" icon="el-icon-picture-outline" @click="handlePictureDp">
+        {{ $t('table.szzs') }}
+      </el-button>
+      <el-button v-waves class="filter-item" type="primary" icon="el-icon-data-line" @click="updateStockDp">
+        {{ $t('table.dpzs')}}
       </el-button>
       <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
         {{ $t('table.export') }}
+      </el-button>
+      <el-button v-waves class="filter-item" type="success" icon="el-icon-paperclip" @click="linkTrack">
+        {{ $t('table.linkTrack') }}
       </el-button>
 <!--      <el-checkbox v-model="showReviewer" class="filter-item" style="margin-left:15px;" @change="tableKey=tableKey+1">
         {{ $t('table.reviewer') }}
@@ -219,7 +225,7 @@
 </template>
 
 <script>
-import { fetchList, createStock, updateStock, updateStockDp, formula, estimate } from '@/api/article'
+import { fetchList, createStock, updateStock, updateStockDp, formula, estimate, linkTrackApi} from '@/api/article'
 import waves from '@/directive/waves' // waves directive
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
@@ -374,6 +380,15 @@ export default {
         })
     })
     },
+    linkTrack() {
+      linkTrackApi().then(response => {
+        Message({
+          message: response.msg,
+          type: 'success',
+          duration: 1.5 * 1000
+        })
+      })
+    },
     handleFilter() {
       this.listQuery.page = 1
       this.getList()
@@ -382,6 +397,11 @@ export default {
       const url = "http://image.sinajs.cn/newchart/daily/n/" + (row.sBelong = 1 ? 'sh':'sz') + row.sCode + ".gif"
       console.log(url)
       window.open(url, row.sName)
+    },
+    handlePictureDp() {
+      const url = "http://image.sinajs.cn/newchart/daily/n/sh000001.gif"
+      console.log(url)
+      window.open(url, '大盘指数')
     },
     handleModifyStatus(row, status) {
       this.$message({

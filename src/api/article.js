@@ -47,6 +47,13 @@ export function updateStockDp() {
   })
 }
 
+export function linkTrackApi() {
+  return request({
+    url: '/vue-element-admin/stockbasis/stockBtch',
+    method: 'post',
+  })
+}
+
 export function listQuantify(data) {
   return request({
     url: '/vue-element-admin/stockquantify/quantifyList',

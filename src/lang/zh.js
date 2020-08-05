@@ -149,7 +149,8 @@ export default {
 	sBelong: '市场',
 	formula: '量化公式',
 	estimate: '价格估算',
-	dpzs: '大盘指数',
+	szzs: '上证指数',
+    dpzs: '大盘更新',
     spj: '当日收盘价',
     minPrice: '当日最低值',
     sStatusA: '个股状态',
@@ -164,6 +165,7 @@ export default {
     sUpszAft: '卖出+(元)',
     sDownRange: '下跌范围',
     sUpRange: '上行范围',
+    linkTrack: '全链路追踪'
   },
   example: {
     warning: '创建和编辑页面是不能被 keep-alive 缓存的，因为keep-alive 的 include 目前不支持根据路由来缓存，所以目前都是基于 component name 来进行缓存的。如果你想类似的实现缓存效果，可以使用 localStorage 等浏览器缓存方案。或者不要使用 keep-alive 的 include，直接缓存所有页面。详情见'
