@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.sName" :placeholder="$t('table.sName')" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+<!--      <el-input v-model="listQuery.sName" :placeholder="$t('table.sName')" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />-->
       <el-button style="margin-left: 5px" v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
         {{ $t('table.export') }}
       </el-button>
@@ -101,7 +101,7 @@
 </template>
 
 <script>
-import { fetchList, createStock, updateStock, updateStockDp, formula, estimate, listQuantify } from '@/api/article'
+import { createStock, updateStock, formula, estimate, recommendQuantify } from '@/api/article'
 import waves from '@/directive/waves' // waves directive
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
@@ -222,7 +222,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      listQuantify(this.listQuery).then(response => {
+      recommendQuantify().then(response => {
         this.list = response.data.pageResult.list
         this.total = response.data.pageResult.total
 

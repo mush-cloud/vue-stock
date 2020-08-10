@@ -61,7 +61,12 @@ export function listQuantify(data) {
     data
   })
 }
-
+export function recommendQuantify() {
+  return request({
+    url: '/vue-element-admin/stockquantify/quantifyRecommend',
+    method: 'post',
+  })
+}
 
 export function fetchArticle(id) {
   return request({

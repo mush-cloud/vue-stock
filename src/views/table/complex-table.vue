@@ -236,8 +236,14 @@ import { Message } from 'element-ui'
 
 const calendarTypeOptions = [
   { key: '大盘走势股', display_name: '大盘走势股' },
+  { key: '大盘走势股L', display_name: '大盘走势股L' },
+  { key: '大盘走势股R', display_name: '大盘走势股R' },
   { key: '个性股', display_name: '个性股' },
+  { key: '个性股L', display_name: '个性股L' },
+  { key: '个性股R', display_name: '个性股R' },
   { key: '抗跌股', display_name: '抗跌股' },
+  { key: '抗跌股L', display_name: '抗跌股L' },
+  { key: '抗跌股R', display_name: '抗跌股R' },
 ]
 
 const sBelongTypeOptions = [

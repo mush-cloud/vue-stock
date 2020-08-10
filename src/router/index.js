@@ -189,7 +189,61 @@ export const asyncRoutes = [
   // chartsRouter,
   // nestedRouter,
   tableRouter,
+  {
+    path: '/table2',
+    component: Layout,
+    // redirect: '/table/complex-table',
+    name: 'quantitativeTrading',
+    meta: {
+      title: 'quantitativeTrading',
+      icon: 'chart'
+    },
+    children: [
+      // {
+      //   path: 'dynamic-table',
+      //   component: () => import('@/views/table/dynamic-table/index'),
+      //   name: 'DynamicTable',
+      //   meta: { title: 'dynamicTable' }
+      // },
+      // {
+      //   path: 'drag-table',
+      //   component: () => import('@/views/table/drag-table'),
+      //   name: 'DragTable',
+      //   meta: { title: 'dragTable' }
+      // },
+      // {
+      //   path: 'inline-edit-table',
+      //   component: () => import('@/views/table/inline-edit-table'),
+      //   name: 'InlineEditTable',
+      //   meta: { title: 'inlineEditTable' }
+      // },
+      // {
+      //   path: 'inline-edit-table',
+      //   component: () => import('@/views/table/inline-edit-table'),
+      //   name: 'InlineEditTable',
+      //   meta: { title: 'inlineEditTable' }
+      // },
+      {
+        path: 'complex-table',
+        component: () => import('@/views/table/complex-table'),
+        name: 'ComplexTable',
+        meta: { title: 'quantitativeModel', icon: 'el-icon-platform-eleme' }
+      },
 
+      {
+        path: 'jycl-table',
+        component: () => import('@/views/table/jycl-table'),
+        name: 'JyclTable',
+        meta: { title: 'quantitativeTrain', icon: 'el-icon-orange' }
+      },
+      {
+        path: 'tomorrow-table',
+        component: () => import('@/views/table/tomorrowl-table'),
+        name: 'TommorowTable',
+        meta: { title: 'quantitativeNerve', icon: 'el-icon-connection' }
+      }
+    ]
+  },
   // {
   //   path: '/example',
   //   component: Layout,
