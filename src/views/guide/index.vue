@@ -5,6 +5,8 @@
       <br/>
       {{ $t('guide.description2') }}
       <a href="https://github.com/mush-cloud" target="_blank">~東京文艺青年.</a>
+      <br/>
+      {{ $t('guide.description3') }}
     </aside>
 <!--    <el-button icon="el-icon-question" type="primary" @click.prevent.stop="guide">-->
 <!--      {{ $t('guide.button') }}-->
