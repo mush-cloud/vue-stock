@@ -1,12 +1,18 @@
 <template>
   <div class="app-container">
     <aside>
+      <a href="https://github.com/mush-cloud" target="_blank">~東京文艺青年.</a>
       {{ $t('guide.description') }}
       <br/>
+      <a href="https://github.com/mush-cloud" target="_blank">begin`</a>
+      <br/>
       {{ $t('guide.description2') }}
-      <a href="https://github.com/mush-cloud" target="_blank">~東京文艺青年.</a>
       <br/>
       {{ $t('guide.description3') }}
+      <br/>
+      {{ $t('guide.description4') }}
+      <br/>
+      <a href="https://github.com/mush-cloud" target="_blank">end`</a>
     </aside>
 <!--    <el-button icon="el-icon-question" type="primary" @click.prevent.stop="guide">-->
 <!--      {{ $t('guide.button') }}-->

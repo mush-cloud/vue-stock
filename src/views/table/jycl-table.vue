@@ -183,7 +183,7 @@ export default {
         sAbility: undefined,
         sort: '+id'
       },
-      importanceOptions: ['金融板块', '医疗板块', '科技板块', '消费板块', '农业板块', '金属板块', '军工板块', '安防设备', '旅游酒店', '商业百货', '酿酒行业'],
+      importanceOptions: ['金融板块', '医疗板块', '科技板块', '消费板块', '农业板块', '金属板块', '军工板块', '安防设备', '旅游酒店', '酿酒行业', '汽车行业'],
       calendarTypeOptions,
       sBelongTypeOptions,
       sAbilityTypeOptions,
