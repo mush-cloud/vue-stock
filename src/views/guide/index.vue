@@ -18,6 +18,8 @@
       <br/>
       {{ $t('guide.description7') }}
       <br/>
+      {{ $t('guide.description8') }}
+      <br/>
       <a href="https://github.com/mush-cloud" target="_blank">end`</a>
     </aside>
 <!--    <el-button icon="el-icon-question" type="primary" @click.prevent.stop="guide">-->
