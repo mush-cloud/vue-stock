@@ -12,6 +12,12 @@
       <br/>
       {{ $t('guide.description4') }}
       <br/>
+      {{ $t('guide.description5') }}
+      <br/>
+      {{ $t('guide.description6') }}
+      <br/>
+      {{ $t('guide.description7') }}
+      <br/>
       <a href="https://github.com/mush-cloud" target="_blank">end`</a>
     </aside>
 <!--    <el-button icon="el-icon-question" type="primary" @click.prevent.stop="guide">-->
