@@ -244,6 +244,7 @@ const calendarTypeOptions = [
   { key: '抗跌股', display_name: '抗跌股' },
   { key: '抗跌股L', display_name: '抗跌股L' },
   { key: '抗跌股R', display_name: '抗跌股R' },
+  { key: '妖股', display_name: '妖股' }
 ]
 
 const sBelongTypeOptions = [
@@ -319,7 +320,7 @@ export default {
         sAbility: undefined,
         sort: '+id'
       },
-      importanceOptions: ['金融板块', '医疗板块', '科技板块', '消费板块', '农业板块', '金属板块', '军工板块', '安防设备', '旅游酒店', '酿酒行业', '汽车行业', '专用设备'],
+      importanceOptions: ['金融板块', '医疗板块', '科技板块', '消费板块', '农业板块', '金属板块', '军工板块', '安防设备', '旅游酒店', '酿酒行业', '汽车行业', '专用设备', '热点概念'],
       calendarTypeOptions,
       sBelongTypeOptions,
       sAbilityTypeOptions,
