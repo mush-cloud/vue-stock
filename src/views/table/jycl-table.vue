@@ -115,6 +115,7 @@ const calendarTypeOptions = [
   { key: '大盘走势股', display_name: '大盘走势股' },
   { key: '大盘走势股L', display_name: '大盘走势股L' },
   { key: '大盘走势股R', display_name: '大盘走势股R' },
+  { key: '低估值', display_name: '低估值' },
   { key: '个性股', display_name: '个性股' },
   { key: '个性股L', display_name: '个性股L' },
   { key: '个性股R', display_name: '个性股R' },

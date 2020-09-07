@@ -79,7 +79,7 @@
       </el-table-column>
       <el-table-column :label="$t('table.sUpRange')" width="110px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.sDownRange }}</span>
+          <span>{{ row.sUpRange }}</span>
         </template>
       </el-table-column>
         <el-table-column :label="$t('table.sUpszBef')" width="110px" align="center">
