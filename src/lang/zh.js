@@ -163,7 +163,7 @@ export default {
 	sBelong: '市场',
 	formula: '量化公式',
 	estimate: '价格估算',
-	szzs: '上证指数',
+	szzs: '上证指数日K',
     dpzs: '大盘更新',
     spj: '当日收盘价',
     minPrice: '当日最低值',

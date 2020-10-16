@@ -32,6 +32,9 @@
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-data-line" @click="updateStockDp">
         {{ $t('table.dpzs')}}
       </el-button>
+      <el-button v-waves class="filter-item" type="primary" icon="el-icon-data-line" @click="forecastStockDp">
+        {{ forecastSH }}
+      </el-button>
       <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
         {{ $t('table.export') }}
       </el-button>
@@ -228,7 +231,7 @@
 </template>
 
 <script>
-import { fetchList, createStock, updateStock, updateStockDp, formula, estimate, linkTrackApi} from '@/api/article'
+import { fetchList, createStock, updateStock, updateStockDp, formula, estimate, linkTrackApi, forecastDp} from '@/api/article'
 import waves from '@/directive/waves' // waves directive
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
@@ -321,6 +324,7 @@ export default {
         sAbility: undefined,
         sort: '+id'
       },
+      forecastSH: '大盘天气指数',
       importanceOptions: ['金融板块', '医疗板块', '科技板块', '消费板块', '农业板块', '金属板块', '军工板块', '安防设备', '旅游酒店', '酿酒行业', '汽车行业', '专用设备'],
       calendarTypeOptions,
       sBelongTypeOptions,
@@ -380,6 +384,8 @@ export default {
         setTimeout(() => {
           this.listLoading = false
         }, 0.1 * 1000)
+      })
+      forecastDp().then(response => {
       })
     },
     updateStockDp() {

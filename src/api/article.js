@@ -8,6 +8,13 @@ export function fetchList(query) {
   })
 }
 
+export function forecastDp() {
+  return request({
+    url: '/vue-element-admin/stockquantify/forecastDp',
+    method: 'post'
+  })
+}
+
 export function createStock(data) {
   return request({
     url: '/vue-element-admin/stockbasis/stockAdd',
