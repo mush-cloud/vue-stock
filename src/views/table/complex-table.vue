@@ -238,17 +238,10 @@ import Pagination from '@/components/Pagination' // secondary package based on e
 import { Message } from 'element-ui'
 
 const calendarTypeOptions = [
-  { key: '大盘走势股', display_name: '大盘走势股' },
-  { key: '大盘走势股L', display_name: '大盘走势股L' },
-  { key: '大盘走势股R', display_name: '大盘走势股R' },
-  { key: '低估值', display_name: '低估值' },
-  { key: '个性股', display_name: '个性股' },
-  { key: '个性股L', display_name: '个性股L' },
-  { key: '个性股R', display_name: '个性股R' },
-  { key: '抗跌股', display_name: '抗跌股' },
-  { key: '抗跌股L', display_name: '抗跌股L' },
-  { key: '抗跌股R', display_name: '抗跌股R' },
-  { key: '热点概念', display_name: '热点概念' }
+  { key: '价值投资短期', display_name: '价值投资短期' },
+  { key: '价值投资长期', display_name: '价值投资长期' },
+  { key: '3T', display_name: '3T(长期)' },
+  { key: 'solo', display_name: 'solo(短期热点|妖股)' }
 ]
 
 const sBelongTypeOptions = [
@@ -373,6 +366,7 @@ export default {
     this.getList()
   },
   methods: {
+    forecastStockDp() {},
     getList() {
       this.listLoading = true
       fetchList(this.listQuery).then(response => {
