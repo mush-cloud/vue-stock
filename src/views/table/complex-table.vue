@@ -17,7 +17,7 @@
       <el-select v-model="listQuery.sBelong" :placeholder="$t('table.sBelong')" clearable class="filter-item" style="width: 120px">
         <el-option v-for="item in sBelongTypeOptions " :key="item.key" :label="item.display_name" :value="item.key" />
       </el-select>
-<!--      <el-select v-model="listQuery.sort" style="width: 140px" class="filter-item" @change="handleFilter">
+      <!--      <el-select v-model="listQuery.sort" style="width: 140px" class="filter-item" @change="handleFilter">
         <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" />
       </el-select> -->
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
@@ -29,10 +29,10 @@
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-picture-outline" @click="handlePictureDp">
         {{ $t('table.szzs') }}
       </el-button>
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-data-line" @click="updateStockDp">
-        {{ $t('table.dpzs')}}
-      </el-button>
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-data-line" @click="forecastStockDp">
+<!--      <el-button v-waves class="filter-item" type="primary" icon="el-icon-data-line" @click="updateStockDp">-->
+<!--        {{ $t('table.dpzs') }}-->
+<!--      </el-button>-->
+      <el-button v-waves class="filter-item" type="danger" icon="el-icon-data-line">
         {{ forecastSH }}
       </el-button>
       <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
@@ -41,7 +41,7 @@
       <el-button v-waves class="filter-item" type="success" icon="el-icon-paperclip" @click="linkTrack">
         {{ $t('table.linkTrack') }}
       </el-button>
-<!--      <el-checkbox v-model="showReviewer" class="filter-item" style="margin-left:15px;" @change="tableKey=tableKey+1">
+      <!--      <el-checkbox v-model="showReviewer" class="filter-item" style="margin-left:15px;" @change="tableKey=tableKey+1">
         {{ $t('table.reviewer') }}
       </el-checkbox> -->
     </div>
@@ -61,7 +61,7 @@
           <span>{{ row.id }}</span>
         </template>
       </el-table-column>
-    <!--  <el-table-column :label="$t('table.date')" width="150px" align="center">
+      <!--  <el-table-column :label="$t('table.date')" width="150px" align="center">
         <template slot-scope="{row}">
           <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
         </template>
@@ -71,12 +71,12 @@
           <span class="link-type" @click="handlePicture(row)">{{ row.sName }}</span>
           <!-- <el-tag>{{ row.type | typeFilter }}</el-tag> -->
           &nbsp;&nbsp;&nbsp;
-          <el-tag >{{ row.sFeature}}</el-tag>
+          <el-tag>{{ row.sFeature }}</el-tag>
           &nbsp;&nbsp;&nbsp;&nbsp;
           <el-button type="primary" size="mini" @click="sinaApi(row)">
             {{ $t('table.diagnosis') }}
           </el-button>
-<!--          <el-tag >{{ $t('table.diagnosis') }}</el-tag>-->
+          <!--          <el-tag >{{ $t('table.diagnosis') }}</el-tag>-->
         </template>
       </el-table-column>
       <el-table-column :label="$t('table.sCode')" width="100px" align="center">
@@ -100,16 +100,16 @@
         </template>
       </el-table-column>
       <el-table-column :label="$t('table.sBelong')" width="100px" align="center">
-<!--        <template slot-scope="{row}">-->
-<!--          <span>{{ row.sBelong }}</span>-->
-<!--        </template>-->
+        <!--        <template slot-scope="{row}">-->
+        <!--          <span>{{ row.sBelong }}</span>-->
+        <!--        </template>-->
         <template slot-scope="{row}">
           <el-tag :type="row.sBelong | sBelongFilter">
-            {{sBelongType[row.sBelong]}}
+            {{ sBelongType[row.sBelong] }}
           </el-tag>
         </template>
       </el-table-column>
-<!--      <el-table-column v-if="showReviewer" :label="$t('table.reviewer')" width="110px" align="center">
+      <!--      <el-table-column v-if="showReviewer" :label="$t('table.reviewer')" width="110px" align="center">
         <template slot-scope="{row}">
           <span style="color:red;">{{ row.reviewer }}</span>
         </template>
@@ -119,7 +119,7 @@
           <svg-icon v-for="n in +row.sAbility" :key="n" icon-class="star" class="meta-item__icon" />
         </template>
       </el-table-column>
-<!--      <el-table-column :label="$t('table.readings')" align="center" width="95">
+      <!--      <el-table-column :label="$t('table.readings')" align="center" width="95">
         <template slot-scope="{row}">
           <span v-if="row.pageviews" class="link-type" @click="handleFetchPv(row.pageviews)">{{ row.pageviews }}</span>
           <span v-else>0</span>
@@ -137,19 +137,19 @@
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
             {{ $t('table.edit') }}
           </el-button>
-          <el-button type="danger" size="mini" @click="handleFormula(row)">
-            {{ $t('table.formula') }}
-          </el-button>
-          <el-button type="success" size="mini" @click="handleEstimate(row)">
-            {{ $t('table.estimate') }}
-          </el-button>
-       <!--   <el-button v-if="row.status!='published'" size="mini" type="success" @click="handleModifyStatus(row,'published')">
+<!--          <el-button type="danger" size="mini" @click="handleFormula(row)">-->
+<!--            {{ $t('table.formula') }}-->
+<!--          </el-button>-->
+<!--          <el-button type="success" size="mini" @click="handleEstimate(row)">-->
+<!--            {{ $t('table.estimate') }}-->
+<!--          </el-button>-->
+          <!--   <el-button v-if="row.status!='published'" size="mini" type="success" @click="handleModifyStatus(row,'published')">
             {{ $t('table.publish') }}
           </el-button> -->
-       <!--   <el-button v-if="row.status!='draft'" size="mini" @click="handleModifyStatus(row,'draft')">
+          <!--   <el-button v-if="row.status!='draft'" size="mini" @click="handleModifyStatus(row,'draft')">
             {{ $t('table.draft') }}
           </el-button> -->
-       <!--   <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row,$index)">
+          <!--   <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row,$index)">
             {{ $t('table.delete') }}
           </el-button> -->
         </template>
@@ -196,9 +196,9 @@
         <el-form-item :label="$t('table.sAbility')">
           <el-rate v-model="temp.sAbility" :colors="['#99A9BF', '#F7BA2A', '#FF9900']" :max="3" style="margin-top:8px;" />
         </el-form-item>
-<!--        <el-form-item :label="$t('table.remark')">-->
-<!--          <el-input v-model="temp.remark" :autosize="{ minRows: 2, maxRows: 4}" type="textarea" placeholder="Please input" />-->
-<!--        </el-form-item>-->
+        <!--        <el-form-item :label="$t('table.remark')">-->
+        <!--          <el-input v-model="temp.remark" :autosize="{ minRows: 2, maxRows: 4}" type="textarea" placeholder="Please input" />-->
+        <!--        </el-form-item>-->
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">
@@ -211,17 +211,17 @@
     </el-dialog>
 
     <el-dialog :visible.sync="dialogPvVisible" title="次日价格估算">
-<!--      <el-table :data="pvData" border fit highlight-current-row style="width: 100%">-->
-<!--        <el-table-column prop="key" label="Channel" />-->
-<!--        <el-table-column prop="pv" label="Pv" />-->
-<!--      </el-table>-->
+      <!--      <el-table :data="pvData" border fit highlight-current-row style="width: 100%">-->
+      <!--        <el-table-column prop="key" label="Channel" />-->
+      <!--        <el-table-column prop="pv" label="Pv" />-->
+      <!--      </el-table>-->
       <el-form ref="dataForm" :rules="rules" :model="tempEstimate" label-position="left" label-width="120px" style="width: 400px; margin-left:50px;">
-      <el-form-item :label="$t('table.spj')" prop="spj">
-        <el-input v-model="tempEstimate.spj" />
-      </el-form-item>
-      <el-form-item :label="$t('table.minPrice')" prop="minPrice">
-        <el-input v-model="tempEstimate.minPrice" />
-      </el-form-item>
+        <el-form-item :label="$t('table.spj')" prop="spj">
+          <el-input v-model="tempEstimate.spj" />
+        </el-form-item>
+        <el-form-item :label="$t('table.minPrice')" prop="minPrice">
+          <el-input v-model="tempEstimate.minPrice" />
+        </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="executeEstimate()">{{ $t('table.confirm') }}</el-button>
@@ -231,7 +231,7 @@
 </template>
 
 <script>
-import { fetchList, createStock, updateStock, updateStockDp, formula, estimate, linkTrackApi, forecastDp} from '@/api/article'
+import { fetchList, createStock, updateStock, updateStockDp, formula, estimate, linkTrackApi, forecastDp } from '@/api/article'
 import waves from '@/directive/waves' // waves directive
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
@@ -250,19 +250,19 @@ const sBelongTypeOptions = [
 ]
 
 const sBelongType = {
-  1: "沪",
-  2: "深"
+  1: '沪',
+  2: '深'
 }
 const sAbilityTypeOptions = [
   { key: '1', display_name: '❤' },
   { key: '2', display_name: '❤❤' },
-  { key: '3', display_name: '❤❤❤' },
+  { key: '3', display_name: '❤❤❤' }
 ]
 
 const sStatusTypeOptions = [
-  { key: '正常'},
-  { key: '预警'},
-  { key: '黑名单'},
+  { key: '正常' },
+  { key: '预警' },
+  { key: '黑名单' }
 ]
 
 // arr to obj, such as { CN : "China", US : "USA" }
@@ -283,14 +283,14 @@ export default {
         deleted: 'danger',
         '正常': 'success',
         '预警': 'info',
-        '黑名单': 'danger',
+        '黑名单': 'danger'
       }
       return statusMap[status]
     },
     sBelongFilter(sBelong) {
       const statusMap = {
         1: '沪',
-        2: '深',
+        2: '深'
       }
       return statusMap[sBelong]
     },
@@ -317,7 +317,7 @@ export default {
         sAbility: undefined,
         sort: '+id'
       },
-      forecastSH: '大盘天气指数',
+      forecastSH: '大盘天气：',
       importanceOptions: ['金融板块', '医疗板块', '科技板块', '消费板块', '农业板块', '金属板块', '军工板块', '安防设备', '旅游酒店', '酿酒行业', '汽车行业', '专用设备'],
       calendarTypeOptions,
       sBelongTypeOptions,
@@ -342,7 +342,7 @@ export default {
       tempEstimate: {
         stockName: '',
         spj: '',
-        minPrice: '',
+        minPrice: ''
       },
       dialogFormVisible: false,
       dialogStatus: '',
@@ -357,7 +357,7 @@ export default {
         sCode: [{ required: true, message: 'sCode is required', trigger: 'change' }],
         // timestamp: [{ type: 'date', required: true, message: 'timestamp is required', trigger: 'change' }],
         minPrice: [{ required: true, message: 'minPrice is required', trigger: 'blur' }],
-        spj: [{ required: true, message: 'minPrice is required', trigger: 'blur' }],
+        spj: [{ required: true, message: 'minPrice is required', trigger: 'blur' }]
       },
       downloadLoading: false
     }
@@ -366,11 +366,16 @@ export default {
     this.getList()
   },
   methods: {
-    forecastStockDp() {},
+    forecastStockDp() {
+      forecastDp().then(response => {
+        const arr = response.data.dp
+        arr.forEach((item, index) => {
+          this.forecastSH = this.forecastSH + arr[index] + '|' })
+      })
+    },
     getList() {
       this.listLoading = true
       fetchList(this.listQuery).then(response => {
-        console.info('返回数据',response.data.pageResult);
         this.list = response.data.pageResult.list
         this.total = response.data.pageResult.total
 
@@ -379,8 +384,8 @@ export default {
           this.listLoading = false
         }, 0.1 * 1000)
       })
-      forecastDp().then(response => {
-      })
+
+      this.forecastStockDp()
     },
     updateStockDp() {
       updateStockDp().then(response => {
@@ -389,7 +394,7 @@ export default {
           type: 'success',
           duration: 1.5 * 1000
         })
-    })
+      })
     },
     linkTrack() {
       linkTrackApi().then(response => {
@@ -405,12 +410,12 @@ export default {
       this.getList()
     },
     handlePicture(row) {
-      const url = "http://image.sinajs.cn/newchart/daily/n/" + (row.sBelong == 1 ? 'sh':'sz') + row.sCode + ".gif"
+      const url = 'http://image.sinajs.cn/newchart/daily/n/' + (row.sBelong == 1 ? 'sh' : 'sz') + row.sCode + '.gif'
       console.log(url)
       window.open(url, row.sName)
     },
     handlePictureDp() {
-      const url = "http://image.sinajs.cn/newchart/daily/n/sh000001.gif"
+      const url = 'http://image.sinajs.cn/newchart/daily/n/sh000001.gif'
       console.log(url)
       window.open(url, '大盘指数')
     },
@@ -491,7 +496,7 @@ export default {
       })
     },
     sinaApi(row) {
-      const url = 'http://finance.sina.cn/finance_zt/financeapp/hqzg.shtml?stockcode='+(row.sBelong == 1?'sh':'sz')+row.sCode
+      const url = 'http://finance.sina.cn/finance_zt/financeapp/hqzg.shtml?stockcode=' + (row.sBelong == 1 ? 'sh' : 'sz') + row.sCode
       window.open(url, '智能诊股')
     },
     updateData() {
@@ -512,7 +517,7 @@ export default {
         }
       })
     },
-    handleFormula(row) { //量化公式
+    handleFormula(row) { // 量化公式
       formula(row.sName).then(() => {
         this.$notify({
           title: '成功',

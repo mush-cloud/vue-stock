@@ -48,13 +48,14 @@ const tableRouter = {
       component: () => import('@/views/table/jycl-table'),
       name: 'JyclTable',
       meta: { title: 'JyclTable', icon: 'bug' }
-    },
-    {
-      path: 'tomorrow-table',
-      component: () => import('@/views/table/tomorrowl-table'),
-      name: 'TommorowTable',
-      meta: { title: 'TommorowTable', icon: 'el-icon-cloudy-and-sunny' }
     }
+    // ,
+    // {
+    //   path: 'tomorrow-table',
+    //   component: () => import('@/views/table/tomorrowl-table'),
+    //   name: 'TommorowTable',
+    //   meta: { title: 'TommorowTable', icon: 'el-icon-cloudy-and-sunny' }
+    // }
   ]
 }
 export default tableRouter
