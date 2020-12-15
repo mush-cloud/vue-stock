@@ -317,7 +317,7 @@ export default {
         sAbility: undefined,
         sort: '+id'
       },
-      forecastSH: '大盘天气：',
+      forecastSH: '',
       importanceOptions: ['金融板块', '医疗板块', '商业百货', '工程建设','交运物流', '科技板块', '消费板块', '农业板块', '金属板块', '军工板块', '安防设备', '旅游酒店', '酿酒行业', '汽车行业', '专用设备'],
       calendarTypeOptions,
       sBelongTypeOptions,
@@ -367,6 +367,7 @@ export default {
   },
   methods: {
     forecastStockDp() {
+      this.forecastSH = '大盘天气：';
       forecastDp().then(response => {
         const arr = response.data.dp
         arr.forEach((item, index) => {
